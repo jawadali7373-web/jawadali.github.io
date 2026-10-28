@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Jawad Ali, short-form ad editor for Reels, TikTok and Shorts.">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Jawad Ali | Video Ad Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a cinema screening room. Masthead slate, a 9:16 reel wall, then the edit method and contact slate. Single dark look by choice. */
+:root{
+  --ground:#0f0d0b;      /* espresso black */
+  --panel:#1a1714;       /* edit-bay panel */
+  --line:#2e2822;        /* hairline */
+  --ink:#f1e9dc;         /* ivory text */
+  --muted:#a79c8c;       /* warm grey */
+  --champagne:#d6b77a;   /* accent */
+  --rec:#e0503f;         /* tally light */
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --body:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:3px;border-radius:4px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* masthead */
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-size:22px;letter-spacing:.02em}
+.brand i{color:var(--champagne)}
+.tally{display:inline-flex;align-items:center;gap:8px}
+.tally::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:blink 1.6s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:end;padding-block:72px 56px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,8vw,104px);line-height:.95;margin:18px 0 0;letter-spacing:-.02em;text-wrap:balance}
+.hero h1 em{font-style:italic;color:var(--champagne)}
+.hero p.lede{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:52ch;margin:26px 0 0}
+.slate{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:22px;display:grid;gap:14px}
+.slate .row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:12px}
+.slate .row:last-child{border:0;padding:0}
+.slate b{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--champagne);cursor:pointer;font-family:var(--body)}
+.btn.solid{background:var(--champagne);color:var(--ground)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{filter:brightness(1.08)}
+
+/* reel wall */
+section{padding-block:64px;border-top:1px solid var(--line)}
+.sechead{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.sechead h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1;margin:10px 0 0;text-wrap:balance}
+.sechead h2 em{color:var(--champagne)}
+.sechead p{color:var(--muted);max-width:44ch;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.reel{display:flex;flex-direction:column;gap:14px;min-width:0}
+.screen{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:10px;overflow:hidden;background:#000;border:1px solid var(--line);cursor:pointer;padding:0;display:block;width:100%}
+.screen video{width:100%;height:100%;object-fit:cover;display:block}
+.screen .play{position:absolute;inset:auto 14px 14px auto;width:56px;height:56px;border-radius:50%;background:rgba(15,13,11,.6);backdrop-filter:blur(6px);border:1px solid rgba(214,183,122,.6);display:grid;place-items:center;transition:transform .25s}
+.screen:hover .play{transform:scale(1.08)}
+.screen .play svg{width:18px;height:18px;fill:var(--champagne);margin-left:3px}
+.screen .tc{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 8px;border-radius:4px;background:rgba(15,13,11,.65);color:var(--ink)}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.meta h3{font-family:var(--display);font-weight:400;font-size:26px;margin:0;line-height:1.1}
+.meta .n{font-family:var(--mono);font-size:12px;color:var(--champagne)}
+.reel p{margin:0;color:var(--muted);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted)}
+
+/* method */
+.method{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.beat{padding:24px 20px;border-right:1px solid var(--line);background:var(--panel);min-width:0}
+.beat:last-child{border-right:0}
+.beat .t{font-family:var(--mono);font-size:12px;color:var(--champagne);font-variant-numeric:tabular-nums}
+.beat h4{font-family:var(--display);font-weight:400;font-size:24px;margin:10px 0 8px}
+.beat p{margin:0;color:var(--muted);font-size:14.5px}
+.bar{height:6px;margin-top:18px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--champagne)}
+
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 48px;margin-top:8px}
+.svc{border-top:1px solid var(--line);padding-top:18px}
+.svc h4{margin:0 0 6px;font-size:18px;font-weight:600}
+.svc p{margin:0;color:var(--muted)}
+
+.closing{text-align:left;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.closing h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,6vw,72px);line-height:1;margin:0;text-wrap:balance}
+.closing h2 em{color:var(--champagne)}
+footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer p{margin:0;color:var(--muted);font-size:13px;max-width:70ch}
+
+/* player */
+dialog{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100%;height:100%}
+dialog::backdrop{background:rgba(6,5,4,.92)}
+.player{height:100%;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.stage{display:flex;align-items:center;gap:18px;max-width:100%}
+.stage video{height:min(86vh,calc((100vw - 32px) * 16 / 9));aspect-ratio:9/16;max-width:100%;border-radius:12px;background:#000;border:1px solid var(--line)}
+.nav{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:22px;cursor:pointer;flex:none}
+.close{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));z-index:2}
+.cap{position:fixed;left:0;right:0;bottom:calc(12px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-block:48px 40px;gap:32px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .method{grid-template-columns:1fr}
+  .beat{border-right:0;border-bottom:1px solid var(--line)}
+  .beat:last-child{border-bottom:0}
+  .services{grid-template-columns:1fr}
+  .closing{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr 1fr;gap:14px}
+  .meta h3{font-size:20px}
+  .reel p{font-size:13.5px}
+  .tags{display:none}
+  .nav{display:none}
+  .screen .play{width:42px;height:42px;inset:auto 10px 10px auto}
+}
+@media (prefers-reduced-motion:reduce){.tally::before{animation:none}*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Jawad <i>Ali</i></div>
+    <span class="mono tally">Available for ad work</span>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="mono">Short-form ad editor · Reels · TikTok · Shorts</span>
+      <h1>Thirty seconds that <em>sell.</em></h1>
+      <p class="lede">I edit vertical ads that stop the scroll in the first second and carry the viewer to the click. Six formats below, each cut to 30 seconds, each built around a hook, proof and a clear call to action.</p>
+      <div class="cta">
+        <a class="btn solid" href="#reels">Watch the reels</a>
+        <a class="btn ghost" href="#method">How I build an ad</a>
+      </div>
+    </div>
+    <div class="slate" aria-label="Showreel slate">
+      <div class="row"><span class="mono">Editor</span><b>JAWAD ALI</b></div>
+      <div class="row"><span class="mono">Formats</span><b>06</b></div>
+      <div class="row"><span class="mono">Runtime / reel</span><b>00:00:30:00</b></div>
+      <div class="row"><span class="mono">Aspect</span><b>9:16 · 1080×1920</b></div>
+      <div class="row"><span class="mono">Frame rate</span><b>30 fps</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="reels">
+    <div class="sechead">
+      <div><span class="mono">The reel wall</span><h2>One reel per <em>format.</em></h2></div>
+      <p>Tap any reel to watch it with sound. Each one is a 30-second spec campaign built to show how I approach that format.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="method">
+    <div class="sechead">
+      <div><span class="mono">Inside the 30 seconds</span><h2>How I build <em>an ad.</em></h2></div>
+      <p>Every reel above follows the same five-beat structure. The timings flex by format, but the order stays.</p>
+    </div>
+    <div class="method">
+      <div class="beat"><span class="t">00:00 – 00:03</span><h4>Hook</h4><p>A line or image that stops the thumb before the skip.</p><div class="bar"><i style="width:10%"></i></div></div>
+      <div class="beat"><span class="t">00:03 – 00:10</span><h4>Problem</h4><p>Name the pain in the viewer's own words.</p><div class="bar"><i style="width:33%"></i></div></div>
+      <div class="beat"><span class="t">00:10 – 00:18</span><h4>Reveal</h4><p>The product enters as the answer, with a sound cue.</p><div class="bar"><i style="width:60%"></i></div></div>
+      <div class="beat"><span class="t">00:18 – 00:25</span><h4>Proof</h4><p>Numbers, reviews or a before-and-after that earns trust.</p><div class="bar"><i style="width:83%"></i></div></div>
+      <div class="beat"><span class="t">00:25 – 00:30</span><h4>Call to action</h4><p>One clear next step, on screen long enough to act on.</p><div class="bar"><i style="width:100%"></i></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <div><span class="mono">What I handle</span><h2>From raw footage to <em>final export.</em></h2></div>
+    </div>
+    <div class="services">
+      <div class="svc"><h4>Ad editing for paid social</h4><p>Problem-solution, UGC, VSL and AI-assisted ads cut for Reels, TikTok and Shorts.</p></div>
+      <div class="svc"><h4>Multi-camera editing</h4><p>Syncing and cutting multi-cam shoots into tight, watchable sequences.</p></div>
+      <div class="svc"><h4>Clip extraction from long-form</h4><p>Reading transcripts to find the strongest moments and turning them into short clips.</p></div>
+      <div class="svc"><h4>Captions, motion and sound</h4><p>Kinetic captions, animated titles, music and sound effects timed to the cut.</p></div>
+      <div class="svc"><h4>Event films</h4><p>Full-length event films and five-minute highlight edits for weddings.</p></div>
+      <div class="svc"><h4>Hooks and variations</h4><p>Several opening hooks per ad, so you can test what holds attention.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="closing">
+      <h2>Let's make your next ad <em>the one that converts.</em></h2>
+      <a class="btn solid" href="#reels">Back to the reels</a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="mono">Jawad Ali · Video editor</p>
+    <p>Spec campaigns created for this portfolio.</p>
+  </footer>
+</div>
+
+<dialog id="dlg" aria-label="Reel player">
+  <div class="player">
+    <button class="nav close" id="close" aria-label="Close player">×</button>
+    <div class="stage">
+      <button class="nav" id="prev" aria-label="Previous reel">‹</button>
+      <video id="pv" controls playsinline preload="metadata"></video>
+      <button class="nav" id="next" aria-label="Next reel">›</button>
+    </div>
+    <div class="cap" id="cap"></div>
+  </div>
+</dialog>
+
+<script>
+const REELS=[
+ {f:"01_problem_solution",n:"01",t:"Problem → Solution",b:"AURÉA Night Repair Serum",d:"Opens on a cold 6 AM alarm, strikes out the pain points, then flips to warm gold for the product reveal and proof stats.",g:["Colour shift","Stat counters","Product reveal"]},
+ {f:"02_cartoon",n:"02",t:"Cartoon",b:"FIZZ & CO. Sparkling Citrus",d:"A four-character cartoon crew skates, dunks and dances through one reel, runs out of steam, then gets recharged by a can.",g:["Character animation","Comic SFX","Ensemble story"]},
+ {f:"03_ugc_testimonial",n:"03",t:"UGC / Testimonial",b:"VÉLOUR Hair Elixir",d:"Creator-style voiceover with word-synced captions, a before-and-after wipe and stacked review cards.",g:["Voiceover","Synced captions","Before / after"]},
+ {f:"04_fully_ai",n:"04",t:"Fully AI-generated",b:"ÉTHER Eau de Parfum",d:"Starts from a typed prompt. Generative light fields and liquid-chrome forms resolve into the bottle.",g:["Generative visuals","Glitch transitions","Prompt to product"]},
+ {f:"05_mixed_footage_ai",n:"05",t:"Mixed: footage + AI",b:"The Meridian Residences",d:"A skyline plate gets scanned, tracked and extended with AI-generated floors, then fades from golden hour to night.",g:["Plate + AI layers","HUD tracking","Day-to-night"]},
+ {f:"06_vsl",n:"06",t:"VSL (video sales letter)",b:"ELEVATE Creator Program",d:"A narrated sales letter in 30 seconds: hook, problem, three-step method, offer stack, price drop and guarantee.",g:["Voiceover","Offer stack","Urgency CTA"]},
+];
+const grid=document.getElementById("grid");
+const play='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>';
+REELS.forEach((r,i)=>{
+  const el=document.createElement("article");el.className="reel";
+  el.innerHTML=`<button class="screen" aria-label="Play ${r.t} reel"><video src="${r.f}_web.mp4?v=2" poster="${r.f}.jpg?v=2" muted loop playsinline preload="metadata"></video><span class="tc">${r.n} · 00:30</span><span class="play">${play}</span></button>
+  <div class="meta"><h3>${r.t}</h3><span class="n">${r.b}</span></div><p>${r.d}</p><div class="tags">${r.g.map(x=>`<span>${x}</span>`).join("")}</div>`;
+  const v=el.querySelector("video"),s=el.querySelector(".screen");
+  s.addEventListener("mouseenter",()=>{v.play().catch(()=>{})});
+  s.addEventListener("mouseleave",()=>{v.pause()});
+  s.addEventListener("click",()=>openP(i));
+  grid.appendChild(el);
+});
+const dlg=document.getElementById("dlg"),pv=document.getElementById("pv"),cap=document.getElementById("cap");
+let cur=0;
+function load(i){cur=(i+REELS.length)%REELS.length;const r=REELS[cur];pv.src=r.f+"_web.mp4?v=2";pv.poster=r.f+".jpg?v=2";cap.textContent=`${r.n} · ${r.t} · ${r.b}`;pv.play().catch(()=>{})}
+function openP(i){document.querySelectorAll(".screen video").forEach(v=>v.pause());if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");load(i)}
+function closeP(){pv.pause();dlg.close?dlg.close():dlg.removeAttribute("open")}
+document.getElementById("close").onclick=closeP;
+document.getElementById("prev").onclick=()=>load(cur-1);
+document.getElementById("next").onclick=()=>load(cur+1);
+pv.addEventListener("ended",()=>load(cur+1));
+dlg.addEventListener("close",()=>pv.pause());
+dlg.addEventListener("click",e=>{if(e.target.classList.contains("player"))closeP()});
+document.addEventListener("keydown",e=>{if(!dlg.open)return;if(e.key==="ArrowRight")load(cur+1);if(e.key==="ArrowLeft")load(cur-1)});
+</script>
+
+</body>
+</html>
